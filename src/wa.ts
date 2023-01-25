@@ -162,7 +162,7 @@ export async function createSession(options: createSessionOptions) {
             // || message.templateMessage
             message.listMessage
         );
-        logger.info(message, 'PATCHED:'+requiresPatch);
+        logger.warn(message, 'PATCHED:'+requiresPatch);
         if (requiresPatch) {
             message = {
                 viewOnceMessage: {
