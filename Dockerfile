@@ -30,6 +30,7 @@ RUN npm run build
 
 # Run migration
 RUN npx prisma migrate deploy
+RUN npx prisma generate
 
 
 # Expose port
