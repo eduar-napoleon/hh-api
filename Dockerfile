@@ -20,7 +20,10 @@ COPY . .
 RUN npm run build
 
 # Copy .env file
-COPY .env.example .
+COPY .env .
+
+# Run migration
+RUN npx prisma migrate up --experimental
 
 # Expose port
 EXPOSE 3000
