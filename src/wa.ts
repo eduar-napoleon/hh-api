@@ -162,6 +162,7 @@ export async function createSession(options: createSessionOptions) {
             // || message.templateMessage
             message.listMessage
         );
+        logger.info(message, 'PATCHED:'+requiresPatch);
         if (requiresPatch) {
             message = {
                 viewOnceMessage: {
@@ -174,7 +175,6 @@ export async function createSession(options: createSessionOptions) {
                     },
                 },
             };
-            logger.info(message, 'PATCHED');
         }
         return message;
     },
