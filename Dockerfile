@@ -29,7 +29,8 @@ COPY . .
 RUN npm run build
 
 # Run migration
-RUN npx prisma migrate dev  --create-only --preview-feature
+RUN npx prisma migrate dev --name init
+
 
 # Expose port
 EXPOSE 3000
