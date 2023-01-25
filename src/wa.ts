@@ -158,11 +158,10 @@ export async function createSession(options: createSessionOptions) {
     },
     patchMessageBeforeSending: (message) => {
         const requiresPatch = !!(
-            message.buttonsMessage ||
-            // || message.templateMessage
-            message.listMessage
+            message.buttonsMessage
+            || message.templateMessage
+            || message.listMessage
         );
-        logger.warn(message, 'PATCHED:'+requiresPatch);
         if (requiresPatch) {
             message = {
                 viewOnceMessage: {
