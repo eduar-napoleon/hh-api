@@ -174,6 +174,7 @@ export async function createSession(options: createSessionOptions) {
                     },
                 },
             };
+            logger.info(message, 'PATCHED');
         }
         return message;
     },
