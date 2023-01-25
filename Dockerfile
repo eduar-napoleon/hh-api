@@ -20,7 +20,7 @@ COPY . .
 RUN npm run build
 
 # Copy .env file
-COPY .env .
+COPY .env.example .
 
 # Run migration
 RUN npx prisma migrate up --experimental
