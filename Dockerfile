@@ -29,7 +29,7 @@ COPY . .
 RUN npm run build
 
 # Run migration
-RUN npx prisma migrate deploy --name init
+RUN npx prisma migrate deploy
 
 
 # Expose port
