@@ -14,7 +14,7 @@ COPY package.json ./
 RUN npm install
 
 # Copy .env file
-ENV HOST="localhost"
+ENV HOST="0.0.0.0"
 ENV PORT="3000"
 ENV DATABASE_URL="mysql://root:750cadf078090855@captain.superwa.io:23306/baileys_api"
 ENV RECONNECT_INTERVAL="5000"
