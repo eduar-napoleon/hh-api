@@ -19,8 +19,15 @@ COPY . .
 # Build the project
 RUN npm run build
 
+
 # Copy .env file
-COPY .env.example .
+ENV HOST="0.0.0.0"
+ENV PORT="3000"
+ENV DATABASE_URL="mysql://root:750cadf078090855@srv-captain--wa-api-db/baileys_api"
+ENV RECONNECT_INTERVAL="5000"
+ENV MAX_RECONNECT_RETRIES="5"
+ENV SSE_MAX_QR_GENERATION="10"
+ENV LOG_LEVEL="warn"
 
 # Run migration
 RUN npx prisma migrate dev
