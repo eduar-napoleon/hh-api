@@ -140,7 +140,7 @@ export async function createSession(options: createSessionOptions) {
   const handleConnectionUpdate = SSE ? handleSSEConnectionUpdate : handleNormalConnectionUpdate;
   const { state, saveCreds } = await useSession(sessionId);
   const socket = makeWASocket({
-    printQRInTerminal: true,
+    printQRInTerminal: false,
     browser: Browsers.ubuntu('Chrome'),
     generateHighQualityLinkPreview: true,
     ...socketConfig,
@@ -155,6 +155,27 @@ export async function createSession(options: createSessionOptions) {
         where: { remoteJid: key.remoteJid!, id: key.id!, sessionId },
       });
       return (data?.message || undefined) as proto.IMessage | undefined;
+    },
+    patchMessageBeforeSending: (message) => {
+        const requiresPatch = !!(
+            message.buttonsMessage ||
+            // || message.templateMessage
+            message.listMessage
+        );
+        if (requiresPatch) {
+            message = {
+                viewOnceMessage: {
+                    message: {
+                        messageContextInfo: {
+                            deviceListMetadataVersion: 2,
+                            deviceListMetadata: {},
+                        },
+                        ...message,
+                    },
+                },
+            };
+        }
+        return message;
     },
   });
 
